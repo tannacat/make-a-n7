@@ -1,5 +1,6 @@
-# A N+7 text processor
+<h3>view me here!
 
-A simple N+7 text processor from a list of known nouns.
+(https://young-tortoiseshell-alibi.glitch.me)</h3>
 
-(https://young-tortoiseshell-alibi.glitch.me)
+*A simple N+7 text processor from a list of known nouns.*
+
