@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>N+7</title>
+
+    <meta name="description" content="A simple exercise template." />
+    <!-- styles -->
+    <style></style>
+  </head>
+  <body>
+    <h1>N+7</h1>
+    <h2>Source text</h2>
+    <p id="sourceText"></p>
+    <h2>New text</h2>
+    <p id="newText"></p>
+    <!-- script -->
+    <script>
+      let nouns;
+      const sourceText = `my schnauzer stepped into the corpse of a dead rabbit and i saw a possum in broad daylight hanging absentmindedly from a tree. disease i thought, it followed me, im killing everything by my existence and this is why not even weeds will grow in my front garden. a kid fell from their bike, into the remnants of a once-summer rosebush and cried for their mother when a wary thorn stuck them in the guts, their weeps akin to my own when my boxer-dog died`;
+      const wordOffset = 7;
+      function generateNewText(text) {
+        let splitText = text.split(" ");
+        let newText = "";
+        for (const word of splitText) {
+          let indexInList = nouns.indexOf(word);
+          let newWord;
+          if (indexInList > -1) {
+            if (nouns[indexInList + wordOffset]) {
+              newWord = nouns[indexInList + wordOffset];
+            }
+          } else {
+            newWord = word;
+          }
+          if (newText === "") {
+            newText = newWord;
+          } else {
+            newText = newText + " " + newWord;
+          }
+        }
+        return newText;
+      }
+      function initPoem(nounList) {
+        nouns = nounList.split(/\r?\n/);
+        newText = generateNewText(sourceText);
+        document.getElementById("sourceText").innerHTML = sourceText;
+        document.getElementById("newText").innerHTML = newText;
+      }
+      fetch("nounlist.txt")
+        .then((response) => response.text())
+        .then((textContent) => initPoem(textContent));
+    </script>
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div
+      class="glitchButton"
+      style="position: fixed; top: 20px; right: 20px"
+    ></div>
+    <script src="https://button.glitch.me/button.js" defer></script>
+  </body>
+</html>
